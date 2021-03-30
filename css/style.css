@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+colgroup {
+  display: table-column-group;
+}
+
+.flex {
+  display: flex;
+}
+
+#logo img {
+  width: 100px;
+}
+
+svg {
+  color: white;
+}
+
+/* main {
+  height: 100vh;
+} */
+
+footer svg {
+  color: black;
+}
+
+table img {
+  width: 300px;
+}
+
+main img {
+  width: 300px;
+}
+
+main {
+  text-align: center;
+}
+
+#carouselExampleIndicators {
+  width: 80%;
+}
+
+.carousel img {
+  overflow: hidden;
+}
+
+.carousel-item {
+  height: 400px;
+}
