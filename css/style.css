@@ -49,3 +49,17 @@ main {
 .carousel-item {
   height: 400px;
 }
+
+.fas {
+  padding: 0em 1em;
+  color: #dc3545;
+  font-size: larger;
+}
+
+td .fas {
+  font-size: medium;
+}
+
+td figure {
+  margin: 0.5rem;
+}

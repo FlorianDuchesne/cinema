@@ -2,8 +2,15 @@
 
 ob_start();
 
-?>
 
+
+$detailGenre = $genre->fetch();
+
+?>
+<p></p>
+
+<h4><?= $detailGenre["libelle"] ?>
+</h4>
 <h3 class="mt-4">Il y a : <?= $films->rowCount(); ?> films</h3>
 
 <table class="col-8 d-flex flex-column align-items-center mt-4">
@@ -26,18 +33,20 @@ ob_start();
     echo "<td><a href='index.php?action=detailRealisateur&id=" . $film['fk_realisateur_id'] . "'>" . $film['nom_realisateur'] . "</a></td>";
     echo "<td><a href='index.php?action=listGenres'</a>" . $film['genres'] . "</td></tr>";
   }
+
   ?>
 
 
   </tbody>
 </table>
-
 <p></p>
-<a href='index.php?action=ajoutFilm'>Ajouter un film</a>
+<?php
+echo "<p><a href='index.php?action=deleteGenre&id=" . $detailGenre['id'] . "'>Supprimer le genre " . $detailGenre['libelle'] . "</a></p>";
+?>
 
 <?php
 
 $films->closeCursor();
-$titre = "La liste de films";
+$titre = "La liste de films par genre";
 $contenu = ob_get_clean();
 require "./views/template.php";

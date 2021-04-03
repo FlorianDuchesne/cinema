@@ -1,6 +1,5 @@
 <?php
 
-// session_start();
 
 require_once "bdd/DAO.php";
 
@@ -41,6 +40,8 @@ class LogController
     if ($user) {
       if ($this->verifMotdepasse($user, $pwd)) {
         $_SESSION['user'] = $user['email'];
+        $_SESSION['pseudo'] = $user['pseudo'];
+
         require_once("./views/login/log.php");
       }
     }
@@ -78,7 +79,7 @@ class LogController
 
       // $postCount = $statement->rowCount();
       // var_dump($postCount);
-      require_once("./views/login/signup.php");
+      // require_once("./views/login/signup.php");
     } catch (Exception $e) {
       return $e->getMessage();
     }
@@ -91,7 +92,6 @@ class LogController
       $sql = 'SELECT email, pseudo, password FROM user WHERE email = :email';
       $statement = $dao->executerRequete($sql, [":email" => $uemail]);
       $user = $statement->fetch();
-      // var_dump($user);
       // require_once("./views/login/add-user.php");
       return $user;
     } catch (Exception $e) {
@@ -107,5 +107,15 @@ class LogController
   function signup()
   {
     require "views/login/signup.php";
+  }
+
+  function checkout()
+  {
+    // on détruit la variable $_SESSION['user']
+    unset($_SESSION['user']);
+    // on détruit la variable $_SESSION['error']
+    unset($_SESSION['error']);
+
+    // on est redirigé vers l'index
   }
 }

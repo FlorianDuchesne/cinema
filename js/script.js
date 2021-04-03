@@ -24,3 +24,9 @@ function myFunction2() {
     x.nextElementSibling.className = "togglePwd fas fa-eye";
   }
 }
+
+function alertReal() {
+  return confirm(
+    "Supprimer ce réalisateur supprimera également tous ses films réalisés présents dans la base de données ! Confirmez si vous êtes sûr de votre choix"
+  );
+}

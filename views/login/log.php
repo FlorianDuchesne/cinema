@@ -1,12 +1,9 @@
 <?php
-
-session_start();
-
 ob_start();
 
 ?>
 
-<h2 class="mt-4"> <?= $user['pseudo'] ?> Vous êtes bien connecté ! </h2>
+<h2 class="mt-4"> <?= $_SESSION['pseudo'] ?> Vous êtes bien connecté ! </h2>
 
 <?php
 

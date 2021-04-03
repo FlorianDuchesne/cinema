@@ -12,6 +12,7 @@ $detailFilm = $film->fetch();
   <strong>durée : </strong><?= $detailFilm["duree"] ?>
   <strong>réalisateur : </strong><a href='index.php?action=detailRealisateur&id= <?= $detailFilm['fk_realisateur_id'] ?> '> <?= $detailFilm['nom_realisateur'] ?></a>
   <strong> note : </strong><?= $detailFilm["note"] ?>
+  <strong>genre(s) : </strong><a href='index.php?action=listGenres'><?= $detailFilm['genres'] ?></a>
 </p>
 <div class="flex container">
   <p><img src=<?= $detailFilm["imgPath"] ?>></p>

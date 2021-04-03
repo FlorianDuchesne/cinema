@@ -1,5 +1,4 @@
 <?php
-
 require_once "controllers/AccueilController.php";
 require_once "controllers/FilmController.php";
 require_once "controllers/ActeurController.php";
@@ -65,8 +64,73 @@ if (isset($_GET['action'])) {
       break;
     case "add-user":
       $ctrlLog->checkSignup($_POST);
+      break;
     case "log":
       $ctrlLog->checkLogin($_POST);
+      break;
+    case "checkout":
+      $ctrlLog->checkout();
+      break;
+    case "ajoutReal":
+      $ctrlRealisateur->ajoutReal();
+      break;
+    case "checkAjoutReal":
+      $ctrlRealisateur->checkAjoutReal($_POST);
+      break;
+    case "ajoutGenre":
+      $ctrlGenre->ajoutGenre();
+      break;
+    case "checkAjoutGenre":
+      $ctrlGenre->checkAjoutGenre($_POST);
+      break;
+    case "ajoutActeur":
+      $ctrlActeur->ajoutActeur();
+      break;
+    case "checkAjoutActeur":
+      $ctrlActeur->checkAjoutActeur($_POST);
+      break;
+    case "deleteGenre":
+      $id = ($_GET["id"]);
+      $ctrlGenre->deleteGenreById($id);
+      break;
+    case "deleteReal":
+      $id = ($_GET["id"]);
+      $ctrlRealisateur->deleteRealById($id);
+      break;
+    case "editReal":
+      $id = ($_GET["id"]);
+      $ctrlRealisateur->editRealById($id);
+      break;
+    case "checkEditReal":
+      $ctrlRealisateur->checkEditReal($_POST);
+      break;
+    case "deleteActeur":
+      $id = ($_GET["id"]);
+      $ctrlActeur->deleteActeurById($id);
+      break;
+    case "editActeur":
+      $id = ($_GET["id"]);
+      $ctrlActeur->editActeurById($id);
+      break;
+    case "checkEditActeur":
+      $ctrlActeur->checkEditActeur($_POST);
+      break;
+    case "editGenre":
+      $id = ($_GET["id"]);
+      $ctrlGenre->editGenreById($id);
+      break;
+    case "checkEditGenre":
+      $ctrlGenre->checkEditGenre($_POST);
+      break;
+    case "castingActeur":
+      $id = ($_GET["id"]);
+      $ctrlActeur->ajoutCasting($id);
+      break;
+    case "checkCastingActeur":
+      $ctrlActeur->checkCasting($_POST);
+    case "ajoutFilm":
+      $ctrlFilm->ajouterFilm();
+      break;
   }
 } else {
   $ctrlAccueil->pageAccueil();

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +11,7 @@
   <title>Document</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <link href="http://localhost/cinema/cinemaV2/css/style.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/e2a8fec256.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -24,7 +28,14 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
           <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
         </svg>
-        Mon Compte
+        <?php
+        if (isset($_SESSION['pseudo'])) {
+          $_SESSION['pseudo'];
+        } else {
+          var_dump($_SESSION);
+          echo "Mon Compte";
+        }
+        ?>
       </a>
     </div>
   </div>
@@ -93,5 +104,6 @@
   </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<script src="http://localhost/cinema/cinemaV2/js/script.js"></script>
 
 </html>

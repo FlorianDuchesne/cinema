@@ -16,31 +16,37 @@ ob_start();
 
 <body>
 
-  <section class="connexion">
-    <div class="form-wrapper">
+  <?php
+  var_dump($_SESSION['pseudo']);
+  if (isset($_SESSION['user'])) {
+    echo "<p><a href='index.php?action=checkout'>Déconnectez-vous</a></p>";
+  } else {
+    echo "<section class='connexion'>
+    <div class='form-wrapper'>
       <h1>Connexion</h1>
-      <form action="index.php?action=log" method="post">
-        <div class="form-item">
-          <label for="email"></label>
-          <input type="email" name="email" required="required" placeholder="Addresse email"></input>
+      <form action='index.php?action=log' method='post'>
+        <div class='form-item'>
+          <label for='email'></label>
+          <input type='email' name='email' required='required' placeholder='Addresse email'></input>
         </div>
-        <div class="form-item">
-          <label for="password"></label>
-          <div class="flex">
-            <input type="password" name="pwd" required="required" placeholder="mot de passe" id="pwdVisible"></input>
-            <i onclick="myFunction()" class="togglePwd fas fa-eye"></i>
+        <div class='form-item'>
+          <label for='password'></label>
+          <div class='flex'>
+            <input type='password' name='pwd' required='required' placeholder='mot de passe' id='pwdVisible'></input>
+            <i onclick='myFunction()' class='togglePwd fas fa-eye'></i>
           </div>
         </div>
-        <p><input type="hidden" value="<?= $_SESSION["token"] ?>" name="token"></p>
-        <div class="button-panel">
-          <input type="submit" class="button" title="Valider" value="Valider"></input>
+        <div class='button-panel'>
+          <input type='submit' class='button' title='Valider' value='Valider'></input>
         </div>
       </form>
-      <div class="form-footer">
-        <p><a href="index.php?action=signup">Pas encore membre ? <br /> Inscrivez-vous</a></p>
+      <div class='form-footer'>
+        <p><a href='index.php?action=signup'>Pas encore membre ? <br /> Inscrivez-vous</a></p>
       </div>
     </div>
-  </section>
+  </section>";
+  }
+  ?>
   <script src="./js/script.js"></script>
 
   <?php
