@@ -32,10 +32,10 @@ class ActeurController
 
     $dao = new DAO;
 
-    $sql = "SELECT f.id, titre, DATE_FORMAT(sortie, ('%Y')) AS sortie, DATE_FORMAT(SEC_TO_TIME(duree*60), '%H:%i') AS duree, fk_realisateur_id, CONCAT(r.prenom,' ', r.nom) AS nom_realisateur, GROUP_CONCAT( `libelle` SEPARATOR ' ' ) AS genres, f.imgPath FROM Film f LEFT JOIN Realisateur r ON f.fk_realisateur_id = r.id LEFT JOIN est_classifié cl ON cl.fk_film_id = f.id LEFT JOIN Genre g ON g.id = cl.fk_genre_id LEFT JOIN casting c ON c.fk_film_id = f.id LEFT JOIN Acteur a ON a.id = c.fk_acteur_id WHERE a.id = :id GROUP BY titre";
+    $sql = "SELECT f.id AS id_film, a.id AS id_acteur, titre, fk_realisateur_id, CONCAT(r.prenom,' ', r.nom) AS nom_realisateur, ro.personnage FROM Film f LEFT JOIN Realisateur r ON f.fk_realisateur_id = r.id LEFT JOIN est_classifié cl ON cl.fk_film_id = f.id LEFT JOIN casting c ON c.fk_film_id = f.id LEFT JOIN Acteur a ON a.id = c.fk_acteur_id LEFT JOIN Role ro ON ro.id = c.fk_role_id WHERE a.id = :id GROUP BY titre";
     $films = $dao->executerRequete($sql, [":id" => $id]);
-
-    require "views/film/listFilms.php";
+    $acteur = $dao->executerRequete($sql, [":id" => $id]);
+    require "views/acteur/listFilms.php";
   }
 
   public function ajoutActeur()
@@ -65,6 +65,9 @@ class ActeurController
   {
 
     $dao = new DAO();
+    $sqlDeleteCasting = "DELETE FROM `casting` WHERE `casting`.`fk_acteur_id` = :id";
+    $deleteCasting = $dao->executerRequete($sqlDeleteCasting, [":id" => $id]);
+
     $sql = "DELETE FROM `Acteur` WHERE `Acteur`.`id` = :id";
     $delete = $dao->executerRequete($sql, ["id" => $id]);
 
@@ -108,6 +111,7 @@ class ActeurController
     $acteur = $dao->executerRequete($sql0, ["id" => $id]);
     $films = $dao->executerRequete($sql);
     $roles = $dao->executerRequete($sql2);
+
     require "views/acteur/castingForm.php";
   }
 
@@ -132,12 +136,21 @@ class ActeurController
       $idSearch = $idRole->fetch();
       $idRole = $idSearch["id"];
     }
-    var_dump($idRole);
+    // var_dump($idRole);
     // var_dump($role);
 
     $casting = $dao->executerRequete($sql, ["idFilm" => $idFilm, "idActeur" => $idActeur, "idRole" => $idRole]);
     // var_dump($casting);
 
-    // header("Location: index.php?action=listActeurs");
+    header("Location: index.php?action=listActeurs");
+  }
+
+  public function deleteCasting($idFilm, $idActeur)
+  {
+    $dao = new DAO();
+    $sql = "DELETE FROM `casting` WHERE `casting`.`fk_film_id` = :idFilm AND `casting`.`fk_acteur_id` = :idActeur";
+    $delete = $dao->executerRequete($sql, ["idFilm" => $idFilm, "idActeur" => $idActeur]);
+
+    header("Location: index.php?action=listActeurs");
   }
 }

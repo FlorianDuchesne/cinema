@@ -75,16 +75,30 @@ LEFT JOIN realisateur r ON r.id = f.fk_realisateur_id LEFT JOIN est_classifié c
     header("Location: index.php?action=listGenres");
   }
 
-  // public function checkDeleteGenre($array)
-  // {
-  //   var_dump($array);
-  //   $dao = new DAO();
+  public function ajouterFilmById($id)
+  {
+    $dao = new DAO();
+    $sqlFilm = "SELECT * FROM Film WHERE id = :id";
+    $sqlGenre = "SELECT * FROM Genre";
+    $film = $dao->executerRequete($sqlFilm, ["id" => $id]);
+    $genres = $dao->executerRequete($sqlGenre);
 
-  //   $sql = "DELETE FROM `Genre` WHERE `Genre`.`id` = :id; ";
-  //   $id = filter_var($array["id"], FILTER_SANITIZE_STRING);
+    require "./views/genre/addGenre.php";
+  }
 
-  //   $delete = $dao->executerRequete($sql, ["id" => $id]);
-
-  //   require "./views/genre/genreSupprime.php";
-  // }
+  public function checkGenreFilm($array)
+  {
+    // var_dump($array);
+    $idFilm = filter_var($array["id"], FILTER_SANITIZE_STRING);
+    $dao = new DAO();
+    $i = 0;
+    foreach ($array["genres"] as $value) {
+      $idGenres[] = filter_var($value, FILTER_SANITIZE_STRING);
+      $sql = "INSERT INTO `est_classifié`(`fk_film_id`, `fk_genre_id`) VALUES (:idFilm, :idGenre)";
+      $ajoutGenre = $dao->executerRequete($sql, ["idFilm" => $idFilm, "idGenre" => $idGenres[$i]]);
+      $i++;
+    }
+    // var_dump($idGenres);
+    header("Location: index.php?action=listFilms");
+  }
 }

@@ -6,12 +6,17 @@ class RealisateurController
 {
 
 
-  public function listRealisateurs()
+  public function listRealisateurs($ajoutFilm)
   {
     $dao = new DAO();
     $sql = "SELECT id, CONCAT(prenom,' ', nom) AS nom_realisateur, sexe, DATE_FORMAT(dateNaissance, '%d/%m/%y') AS dateNaissance FROM Realisateur r";
     $reals = $dao->executerRequete($sql);
-    require "views/realisateur/listRealisateurs.php";
+
+    if (!$ajoutFilm) {
+      require "views/realisateur/listRealisateurs.php";
+    } else {
+      require "views/film/ajoutFilm.php";
+    }
   }
 
   public function findOneById($id)

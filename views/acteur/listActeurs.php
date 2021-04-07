@@ -25,7 +25,7 @@ ob_start();
     echo "<tr><td><a href='index.php?action=detailActeur&id=" . $acteur['id'] . "'>" . $acteur["nom_acteur"] . "</a></td>";
     echo "<td>" . $acteur["sexe"] . "</td>";
     echo "<td>" . $acteur["dateNaissance"] . "</td>";
-    echo "<td><figure><a href='index.php?action=deleteActeur&id=" . $acteur['id'] . "'><i class='fas fa-trash-alt'></i></a></figure></td>";
+    echo "<td><figure><a href='index.php?action=deleteActeur&id=" . $acteur['id'] . "'onclick='alertReal()'><i class='fas fa-trash-alt'></i></a></figure></td>";
     echo "<td><figure><a href='index.php?action=editActeur&id=" . $acteur['id'] . "'><i class='fas fa-edit'></i></a></figure></td></tr>";
   }
 

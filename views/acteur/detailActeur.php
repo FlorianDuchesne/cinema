@@ -16,8 +16,7 @@ $detailActeur = $acteur->fetch();
 echo "<p><a href='index.php?action=listActeurfilms&id=" . $detailActeur['id'] . "'>Voir la filmographie</a> de " . $detailActeur['identite'] . "</p>";
 echo "<p><a href='index.php?action=castingActeur&id=" . $detailActeur['id'] . "'>rajouter l'acteur au casting d'un film</a></p>";
 
-echo "<div class='flex'><p><a href='index.php?action=deleteActeur&id=" . $detailActeur['id'] . "'><i class='fas fa-trash-alt'></i></a></p>";
-echo "<p><a href='index.php?action=editActeur&id=" . $detailActeur['id'] . "'><i class='fas fa-edit'></i></a></p></div>";
+echo "<div class='flex'><p><a href='index.php?action=deleteActeur&id=" . $detailActeur['id'] . "'onclick='alertReal()'><i class='fas fa-trash-alt'></i></a></p>";
 
 ?>
 

@@ -30,3 +30,17 @@ function alertReal() {
     "Supprimer ce réalisateur supprimera également tous ses films réalisés présents dans la base de données ! Confirmez si vous êtes sûr de votre choix"
   );
 }
+
+// function alertFilm() {
+//   return confirm(
+//     "Êtes-vous vraiment bien sûr de vouloir supprimer ce film de la base de données ?"
+//   );
+// }
+
+// function alertActeur() {
+//   return confirm(
+//     "Êtes-vous vraiment bien sûr de vouloir supprimer cet acteur de la base de données ?"
+//   );
+// }
+
+// ----> je ne sais pas pourquoi, alertFilm et alertActeur ne fonctionnent pas…

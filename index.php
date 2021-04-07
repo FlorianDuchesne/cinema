@@ -12,6 +12,7 @@ $ctrlAccueil = new AccueilController;
 $ctrlRealisateur = new RealisateurController;
 $ctrlGenre = new GenreController;
 $ctrlLog = new LogController;
+$ajoutFilm = false;
 
 if (isset($_GET['action'])) {
 
@@ -30,7 +31,7 @@ if (isset($_GET['action'])) {
       $ctrlActeur->listActeurs();
       break;
     case "listRealisateurs":
-      $ctrlRealisateur->listRealisateurs();
+      $ctrlRealisateur->listRealisateurs($ajoutFilm);
       break;
     case "detailRealisateur":
       $id = ($_GET["id"]);
@@ -128,8 +129,36 @@ if (isset($_GET['action'])) {
       break;
     case "checkCastingActeur":
       $ctrlActeur->checkCasting($_POST);
+      break;
+    case "lierGenreFilm":
+      $id = ($_GET["id"]);
+      $ctrlGenre->ajouterFilmById($id);
+      break;
+    case "checkGenreFilm":
+      $ctrlGenre->checkGenreFilm($_POST);
+      break;
     case "ajoutFilm":
-      $ctrlFilm->ajouterFilm();
+      $ajoutFilm = true;
+      $ctrlRealisateur->listRealisateurs($ajoutFilm);
+      break;
+    case "checkAjoutFilm":
+      $ctrlFilm->checkAjoutFilm($_POST);
+      break;
+    case "editFilm":
+      $id = ($_GET["id"]);
+      $ctrlFilm->editFilm($id);
+      break;
+    case "checkEditFilm":
+      $ctrlFilm->checkEditFilm($_POST);
+      break;
+    case "deleteFilm":
+      $id = ($_GET["id"]);
+      $ctrlFilm->deleteFilm($id);
+      break;
+    case "deleteCasting":
+      $idFilm = ($_GET["idfilm"]);
+      $idActeur = ($_GET["idacteur"]);
+      $ctrlActeur->deleteCasting($idFilm, $idActeur);
       break;
   }
 } else {

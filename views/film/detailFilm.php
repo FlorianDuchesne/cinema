@@ -27,8 +27,14 @@ $detailFilm = $film->fetch();
       }
       ?>
     </p>
+    <div class="d-flex flex-column m-3">
+      <a href="index.php?action=lierGenreFilm&id=<?= $detailFilm['id'] ?>">attribuer un genre au film</a>
+      <a class="p-3" href="index.php?action=editFilm&id=<?= $detailFilm['id'] ?>"><i class='fas fa-edit'></i>modifier les informations du film</a>
+      <a href="index.php?action=deleteFilm&id=<?= $detailFilm['id'] ?>" onclick=' alertReal()'><i class='fas fa-trash-alt'></i>supprimer le film</a>
+    </div>
   </div>
 </div>
+
 
 
 <?php

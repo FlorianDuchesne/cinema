@@ -12,13 +12,25 @@ ob_start();
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="./img/spiderman.jpg" class="d-block w-100" alt="image spiderman">
+      <img src="./img/spiderman.jpg" class="d-block w-50" alt="image spiderman">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Découvrez les films de super héros de ce catalogue</h5>
+        <a href="index.php?action=listfilmsGenres&id=2">Cliquez ici !</a>
+      </div>
     </div>
     <div class="carousel-item">
-      <img src="./img/spidermanhomecoming.jpg" class="d-block w-100" alt="image spiderman">
+      <img src="./img/spidermanhomecoming.jpg" class="d-block w-50" alt="image spiderman">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Découvrez le nouvel acteur de Spiderman</h5>
+        <a href="index.php?action=detailActeur&id=10">Cliquez ici !</a>
+      </div>
     </div>
     <div class="carousel-item">
-      <img src="./img/samraimi.jpg" class="d-block w-100" alt="sam raimi">
+      <img src="./img/samraimi.jpg" class="d-block w-50" alt="sam raimi">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Découvrez Sam Raimi</h5>
+        <a href="index.php?action=detailRealisateur&id=6">Cliquez ici !</a>
+      </div>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

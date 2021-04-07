@@ -36,6 +36,7 @@ main img {
 
 main {
   text-align: center;
+  margin: 1em;
 }
 
 #carouselExampleIndicators {
@@ -43,11 +44,17 @@ main {
 }
 
 .carousel img {
+  margin: auto;
+  transform: translateY(-100px);
+}
+
+.carousel-inner {
   overflow: hidden;
 }
 
 .carousel-item {
   height: 400px;
+  background-color: black;
 }
 
 .fas {
@@ -62,4 +69,18 @@ td .fas {
 
 td figure {
   margin: 0.5rem;
+}
+
+li {
+  list-style: none;
+}
+
+.carousel-caption a {
+  text-decoration: none;
+  color: white;
+}
+
+.form-item input {
+  width: auto;
+  height: auto;
 }
