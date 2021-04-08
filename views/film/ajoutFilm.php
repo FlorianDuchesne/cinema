@@ -35,15 +35,26 @@ ob_start();
       </div>
       <div class="form-item">
         <label for="duree"></label>
-        <input type="number" name="duree" required="required" placeholder="Durée du chiffre en minutes (chiffres uniquement)"></input>
+        <input type="number" name="duree" min="0" required="required" placeholder="Durée du chiffre en minutes (chiffres uniquement)"></input>
       </div>
       <div class="form-item">
         <label for="note"></label>
-        <input type="number" name="note" required="required" placeholder="note globale du film (chiffres uniquement)"></input>
+        <input type="number" name="note" min="0" max="5" required="required" placeholder="note globale du film (chiffres uniquement)"></input>
       </div>
       <div class="form-item">
         <label for="resume"></label>
-        <input type="text" name="resume" required="required" placeholder="résumé du film"></input>
+        <textarea type="text" name="resume" required="required" style="padding: 0.5em">résumé du film</textarea>
+      </div>
+      <div class="form-item m-3">
+        <p>Genre(s) du film : </p>
+        <?php
+        while ($genre = $genres->fetch()) {
+        ?>
+          <input type="checkbox" name="genres[]" class="checkbox" id="<?= $genre['id'] ?>" value="<?= $genre['id'] ?>">
+          <label for="genre"> <?= $genre['libelle'] ?> </label>
+        <?php
+        }
+        ?>
       </div>
       <div>
         <label for="real">Réalisateur du film :</label>

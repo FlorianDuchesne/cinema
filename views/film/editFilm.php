@@ -41,18 +41,24 @@ $detailFilm = $film->fetch();
       </div>
       <div class="form-item m-3">
         <label for="duree">durée du film en minutes</label>
-        <input type="number" name="duree" value="<?= $detailFilm['duree'] ?>"></input>
+        <input type="number" name="duree" min="0" value="<?= $detailFilm['duree'] ?>"></input>
       </div>
       <div class="form-item m-3">
         <label for="note">note du film</label>
-        <input type="number" name="note" value="<?= $detailFilm['note'] ?>"></input>
+        <input type="number" name="note" min="0" max="5" value="<?= $detailFilm['note'] ?>"></input>
       </div>
       <div class="form-item m-3">
         <label for="real">réalisateur :</label>
         <select name="real" id="real">
           <?php
           while ($real = $reals->fetch()) {
-            echo "<option value='" . $real['id'] . "'>" . $real['nom_real'] . "</option>";
+          ?>
+            <option value='<?= $real['id'] ?>' <?php
+                                                if ($detailFilm['fk_realisateur_id'] === $real['id']) {
+                                                  echo "selected";
+                                                }
+                                                ?>><?= $real['nom_real'] ?></option>
+          <?php
           }
           ?>
         </select>
@@ -60,10 +66,20 @@ $detailFilm = $film->fetch();
       <div class="form-item m-3">
         <p>Genre(s) du film : </p>
         <?php
+        $tableauGenres = [];
+        // var_dump($genresFilm->fetchAll());
+        while ($genreFilm = $genresFilm->fetch()) {
+          $tableauGenres[] = $genreFilm['id'];
+          // var_dump($tableauGenres);
+        }
         while ($genre = $genres->fetch()) {
         ?>
-          <input type="checkbox" name="genres[]" class="checkbox" id="<?= $genre['id'] ?>" value="<?= $genre['id'] ?>">
-          <label for="genre"> <?= $genre['libelle'] ?> </label>
+          <input type="checkbox" name="genres[]" class="checkbox" id="<?= $genre['id'] ?>" value="<?= $genre['id'] ?>" <?php
+                                                                                                                        if (in_array($genre['id'], $tableauGenres)) {
+                                                                                                                          echo "checked";
+                                                                                                                        }
+                                                                                                                        ?>>
+          <label for="genres"> <?= $genre['libelle'] ?> </label>
         <?php
         }
         ?>
@@ -74,7 +90,7 @@ $detailFilm = $film->fetch();
       </div>
       <div class="form-item">
         <label for="resume">résumé du film : </label>
-        <input type="text" name="resume" value="<?= $detailFilm['resume'] ?>"></input>
+        <textarea type="text" name="resume" rows="10" cols="35" style="padding: 0.5em"><?= $detailFilm['resume'] ?></textarea>
       </div>
   </div>
   <div class="button-panel">

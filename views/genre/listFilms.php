@@ -31,7 +31,7 @@ $detailGenre = $genre->fetch();
     echo "<td>" . $film["sortie"] . "</td>";
     echo "<td>" . $film["duree"] . "</td>";
     echo "<td><a href='index.php?action=detailRealisateur&id=" . $film['fk_realisateur_id'] . "'>" . $film['nom_realisateur'] . "</a></td>";
-    echo "<td><a href='index.php?action=listGenres'</a>" . $film['genres'] . "</td></tr>";
+    echo "<td>" . $film['genres'] . "</td></tr>";
   }
 
   ?>

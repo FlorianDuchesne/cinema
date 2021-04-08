@@ -34,7 +34,6 @@ class ActeurController
 
     $sql = "SELECT f.id AS id_film, a.id AS id_acteur, titre, fk_realisateur_id, CONCAT(r.prenom,' ', r.nom) AS nom_realisateur, ro.personnage FROM Film f LEFT JOIN Realisateur r ON f.fk_realisateur_id = r.id LEFT JOIN est_classifié cl ON cl.fk_film_id = f.id LEFT JOIN casting c ON c.fk_film_id = f.id LEFT JOIN Acteur a ON a.id = c.fk_acteur_id LEFT JOIN Role ro ON ro.id = c.fk_role_id WHERE a.id = :id GROUP BY titre";
     $films = $dao->executerRequete($sql, [":id" => $id]);
-    $acteur = $dao->executerRequete($sql, [":id" => $id]);
     require "views/acteur/listFilms.php";
   }
 

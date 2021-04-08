@@ -11,10 +11,11 @@ class RealisateurController
     $dao = new DAO();
     $sql = "SELECT id, CONCAT(prenom,' ', nom) AS nom_realisateur, sexe, DATE_FORMAT(dateNaissance, '%d/%m/%y') AS dateNaissance FROM Realisateur r";
     $reals = $dao->executerRequete($sql);
-
     if (!$ajoutFilm) {
       require "views/realisateur/listRealisateurs.php";
     } else {
+      $sqlGenres = "SELECT * FROM Genre";
+      $genres = $dao->executerRequete($sqlGenres);
       require "views/film/ajoutFilm.php";
     }
   }
@@ -80,11 +81,6 @@ class RealisateurController
     $deleteReal = $dao->executerRequete($sqlReal, ["id" => $id]);
 
     header("Location: index.php?action=listRealisateurs");
-
-    // Ne marche pas pour l'instant sur les réalisateurs qui sont en clés étrangères de films !
-    // j'imagine qu'on verra ça plus tard (comment supprimer la clé )
-    //  je pense qu'il faut supprimer la clé étrangère, supprimer le réalisateur, rétablir la clé étrangère.
-    // Mais je préfère ne pas essayer pour le moment.
   }
 
   public function editRealById($id)

@@ -15,6 +15,9 @@ $ctrlLog = new LogController;
 $ajoutFilm = false;
 
 if (isset($_GET['action'])) {
+  if (isset($_GET["id"])) {
+    $id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING);
+  }
 
   switch ($_GET['action']) {
 
@@ -34,27 +37,27 @@ if (isset($_GET['action'])) {
       $ctrlRealisateur->listRealisateurs($ajoutFilm);
       break;
     case "detailRealisateur":
-      $id = ($_GET["id"]);
+      // $id = ($_GET["id"]);
       $ctrlRealisateur->findOneById($id);
       break;
     case "detailFilm":
-      $id = ($_GET["id"]);
+      // $id = ($_GET["id"]);
       $ctrlFilm->findOneById($id);
       break;
     case "detailActeur":
-      $id = ($_GET["id"]);
+      // $id = ($_GET["id"]);
       $ctrlActeur->findOneById($id);
       break;
     case "listfilmsGenres":
-      $id = ($_GET["id"]);
+      // $id = ($_GET["id"]);
       $ctrlGenre->findAllById($id);
       break;
     case "listActeurfilms":
-      $id = ($_GET["id"]);
+      // $id = ($_GET["id"]);
       $ctrlActeur->findAllbyId($id);
       break;
     case "listRealisateurfilms":
-      $id = ($_GET["id"]);
+      // $id = ($_GET["id"]);
       $ctrlRealisateur->findAllbyId($id);
       break;
     case "login":
@@ -91,47 +94,39 @@ if (isset($_GET['action'])) {
       $ctrlActeur->checkAjoutActeur($_POST);
       break;
     case "deleteGenre":
-      $id = ($_GET["id"]);
       $ctrlGenre->deleteGenreById($id);
       break;
     case "deleteReal":
-      $id = ($_GET["id"]);
       $ctrlRealisateur->deleteRealById($id);
       break;
     case "editReal":
-      $id = ($_GET["id"]);
       $ctrlRealisateur->editRealById($id);
       break;
     case "checkEditReal":
       $ctrlRealisateur->checkEditReal($_POST);
       break;
     case "deleteActeur":
-      $id = ($_GET["id"]);
       $ctrlActeur->deleteActeurById($id);
       break;
     case "editActeur":
-      $id = ($_GET["id"]);
       $ctrlActeur->editActeurById($id);
       break;
     case "checkEditActeur":
       $ctrlActeur->checkEditActeur($_POST);
       break;
     case "editGenre":
-      $id = ($_GET["id"]);
       $ctrlGenre->editGenreById($id);
       break;
     case "checkEditGenre":
       $ctrlGenre->checkEditGenre($_POST);
       break;
     case "castingActeur":
-      $id = ($_GET["id"]);
       $ctrlActeur->ajoutCasting($id);
       break;
     case "checkCastingActeur":
       $ctrlActeur->checkCasting($_POST);
       break;
     case "lierGenreFilm":
-      $id = ($_GET["id"]);
       $ctrlGenre->ajouterFilmById($id);
       break;
     case "checkGenreFilm":
@@ -145,19 +140,17 @@ if (isset($_GET['action'])) {
       $ctrlFilm->checkAjoutFilm($_POST);
       break;
     case "editFilm":
-      $id = ($_GET["id"]);
       $ctrlFilm->editFilm($id);
       break;
     case "checkEditFilm":
       $ctrlFilm->checkEditFilm($_POST);
       break;
     case "deleteFilm":
-      $id = ($_GET["id"]);
       $ctrlFilm->deleteFilm($id);
       break;
     case "deleteCasting":
-      $idFilm = ($_GET["idfilm"]);
-      $idActeur = ($_GET["idacteur"]);
+      $idFilm = filter_input(INPUT_GET, "idfilm", FILTER_SANITIZE_STRING);
+      $idActeur = filter_input(INPUT_GET, "idacteur", FILTER_SANITIZE_STRING);
       $ctrlActeur->deleteCasting($idFilm, $idActeur);
       break;
   }

@@ -20,10 +20,11 @@ ob_start();
   // var_dump($films->fetch());
 
   while ($film = $films->fetch()) {
+    $acteur = $film['id_acteur'];
     echo "<tr><td><a href='index.php?action=detailFilm&id=" . $film['id_film'] . "'>" . $film["titre"] . "</a></td>";
     echo "<td><a href='index.php?action=detailRealisateur&id=" . $film['fk_realisateur_id'] . "'>" . $film['nom_realisateur'] . "</a></td>";
     echo "<td>" . $film['personnage'] . "</td>";
-    echo "<td><figure><a href='index.php?action=deleteCasting&idfilm=" . $film['id_film'] . "&idacteur=" . $film['id_acteur'] . "'><i class='fas fa-trash-alt'></i></a></figure></td>";
+    echo "<td><figure><a href='index.php?action=deleteCasting&idfilm=" . $film['id_film'] . "&idacteur=" . $acteur . "'><i class='fas fa-trash-alt'></i></a></figure></td>";
   }
   ?>
 
@@ -33,8 +34,7 @@ ob_start();
 
 <p></p>
 <?php
-$acteur = $acteur->fetch();
-echo "<a href='index.php?action=castingActeur&id=" . $acteur['id_acteur'] . "'>Ajouter un casting</a>";
+echo "<a href='index.php?action=castingActeur&id=" . $acteur . "'>Ajouter un casting</a>";
 $films->closeCursor();
 $titre = "La liste de films";
 $contenu = ob_get_clean();
