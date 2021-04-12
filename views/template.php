@@ -62,6 +62,7 @@ session_start();
   </nav>
 
   <main class="d-flex justify-content-center align-items-center flex-column">
+
     <?= $contenu ?>
 
   </main>
